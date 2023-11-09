@@ -4,24 +4,24 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateVoertuigenTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
         Schema::create('voertuigen', function (Blueprint $table) {
             $table->id();
+            $table->string('kenteken');
+            $table->string('type');
+            $table->date('bouwjaar');
+            $table->string('brandstof');
+            $table->foreignId('type_voertuig_id')->constrained('type_voertuigen');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('voertuigen');
     }
-};
+}
+
