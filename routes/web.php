@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InstructeurController;
+use App\Http\Controllers\VoertuigController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/instructeurs', [InstructeurController::class, 'index'])->name('instructeurs.index');
+Route::get('/instructeurs/{instructeur}', [InstructeurController::class, 'show'])->name('instructeurs.show');
+Route::get('/voertuigen/{voertuig}/edit', [VoertuigController::class, 'edit'])->name('voertuigen.edit');
+Route::put('/voertuigen/{voertuig}', [VoertuigController::class, 'update'])->name('voertuigen.update');
